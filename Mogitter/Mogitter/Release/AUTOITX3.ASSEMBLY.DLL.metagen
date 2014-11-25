@@ -1,0 +1,139 @@
+ImageRuntimeVersion: v2.0.50727
+Assembly AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470: 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Class AutoIt.AutoItX: AutoLayout, AnsiClass, Class, Public, Abstract, Sealed, BeforeFieldInit
+  Fields:
+    Int32 INTDEFAULT = -2147483647 : Public, Static, Literal, HasDefault
+    Int32 SW_HIDE = 0 : Public, Static, Literal, HasDefault
+    Int32 SW_SHOWNORMAL = 1 : Public, Static, Literal, HasDefault
+    Int32 SW_NORMAL = 1 : Public, Static, Literal, HasDefault
+    Int32 SW_SHOWMINIMIZED = 2 : Public, Static, Literal, HasDefault
+    Int32 SW_SHOWMAXIMIZED = 3 : Public, Static, Literal, HasDefault
+    Int32 SW_MAXIMIZE = 3 : Public, Static, Literal, HasDefault
+    Int32 SW_SHOWNOACTIVATE = 4 : Public, Static, Literal, HasDefault
+    Int32 SW_SHOW = 5 : Public, Static, Literal, HasDefault
+    Int32 SW_MINIMIZE = 6 : Public, Static, Literal, HasDefault
+    Int32 SW_SHOWMINNOACTIVE = 7 : Public, Static, Literal, HasDefault
+    Int32 SW_SHOWNA = 8 : Public, Static, Literal, HasDefault
+    Int32 SW_RESTORE = 9 : Public, Static, Literal, HasDefault
+    Int32 SW_SHOWDEFAULT = 10 : Public, Static, Literal, HasDefault
+    Int32 SW_FORCEMINIMIZE = 11 : Public, Static, Literal, HasDefault
+  Methods:
+    WinGetProcess(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetState(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetState(IntPtr): PrivateScope, Public, Static, HideBySig
+    WinGetText(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetText(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetTitle(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetTitle(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinKill(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinKill(IntPtr): PrivateScope, Public, Static, HideBySig
+    WinMinimizeAll(): PrivateScope, Public, Static, HideBySig
+    WinMinimizeAllUndo(): PrivateScope, Public, Static, HideBySig
+    WinMove(String, String, Int32, Int32, Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinMove(IntPtr, Int32, Int32, Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinSetOnTop(String, String, Int32): PrivateScope, Public, Static, HideBySig
+    WinSetOnTop(IntPtr, Int32): PrivateScope, Public, Static, HideBySig
+    WinSetState(String, String, Int32): PrivateScope, Public, Static, HideBySig
+    WinSetState(IntPtr, Int32): PrivateScope, Public, Static, HideBySig
+    WinSetTitle(String, String, String): PrivateScope, Public, Static, HideBySig
+    WinSetTitle(IntPtr, String): PrivateScope, Public, Static, HideBySig
+    WinSetTrans(String, String, Int32): PrivateScope, Public, Static, HideBySig
+    WinSetTrans(IntPtr, Int32): PrivateScope, Public, Static, HideBySig
+    WinWait(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinWait(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinWaitActive(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinWaitActive(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinWaitClose(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinWaitClose(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinWaitNotActive(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinWaitNotActive(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    Init(): PrivateScope, Public, Static, HideBySig
+    ErrorCode(): PrivateScope, Public, Static, HideBySig
+    AutoItSetOption(String, Int32): PrivateScope, Public, Static, HideBySig
+    ClipGet(Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ClipPut(String): PrivateScope, Public, Static, HideBySig
+    ControlClick(String, String, String, String(Optional, HasDefault), Int32(Optional, HasDefault), Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlClick(IntPtr, IntPtr, String(Optional, HasDefault), Int32(Optional, HasDefault), Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlCommand(String, String, String, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlCommand(IntPtr, IntPtr, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlListView(String, String, String, String, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlListView(IntPtr, IntPtr, String, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlDisable(String, String, String): PrivateScope, Public, Static, HideBySig
+    ControlDisable(IntPtr, IntPtr): PrivateScope, Public, Static, HideBySig
+    ControlEnable(String, String, String): PrivateScope, Public, Static, HideBySig
+    ControlEnable(IntPtr, IntPtr): PrivateScope, Public, Static, HideBySig
+    ControlFocus(String, String, String): PrivateScope, Public, Static, HideBySig
+    ControlFocus(IntPtr, IntPtr): PrivateScope, Public, Static, HideBySig
+    ControlGetFocus(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlGetFocus(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlGetHandle(IntPtr, String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlGetHandleAsText(String(Optional, HasDefault), String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlGetPos(String(Optional, HasDefault), String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlGetPos(IntPtr, IntPtr): PrivateScope, Public, Static, HideBySig
+    ControlGetText(String, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlGetText(IntPtr, IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlHide(String, String, String): PrivateScope, Public, Static, HideBySig
+    ControlHide(IntPtr, IntPtr): PrivateScope, Public, Static, HideBySig
+    ControlMove(String, String, String, Int32, Int32, Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlMove(IntPtr, IntPtr, Int32, Int32, Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlSend(String, String, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlSend(IntPtr, IntPtr, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlSetText(String, String, String, String): PrivateScope, Public, Static, HideBySig
+    ControlSetText(IntPtr, IntPtr, String): PrivateScope, Public, Static, HideBySig
+    ControlShow(String, String, String): PrivateScope, Public, Static, HideBySig
+    ControlShow(IntPtr, IntPtr): PrivateScope, Public, Static, HideBySig
+    ControlTreeView(String, String, String, String, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ControlTreeView(IntPtr, IntPtr, String, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    DriveMapAdd(String, String, Int32(Optional, HasDefault), String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    DriveMapDel(String): PrivateScope, Public, Static, HideBySig
+    DriveMapGet(String): PrivateScope, Public, Static, HideBySig
+    IsAdmin(): PrivateScope, Public, Static, HideBySig
+    MouseClick(String(Optional, HasDefault), Int32(Optional, HasDefault), Int32(Optional, HasDefault), Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    MouseClickDrag(String, Int32, Int32, Int32, Int32, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    MouseDown(String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    MouseGetCursor(): PrivateScope, Public, Static, HideBySig
+    MouseGetPos(): PrivateScope, Public, Static, HideBySig
+    MouseMove(Int32, Int32, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    MouseUp(String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    MouseWheel(String, Int32): PrivateScope, Public, Static, HideBySig
+    PixelChecksum(Rectangle, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    PixelGetColor(Int32, Int32): PrivateScope, Public, Static, HideBySig
+    PixelSearch(Rectangle, Int32, Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ProcessClose(String): PrivateScope, Public, Static, HideBySig
+    ProcessExists(String): PrivateScope, Public, Static, HideBySig
+    ProcessSetPriority(String, Int32): PrivateScope, Public, Static, HideBySig
+    ProcessWait(String, Int32): PrivateScope, Public, Static, HideBySig
+    ProcessWaitClose(String, Int32): PrivateScope, Public, Static, HideBySig
+    Run(String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    RunAs(String, String, String, Int32, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    RunAsWait(String, String, String, Int32, String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    RunWait(String, String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    Send(String, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    Shutdown(Int32): PrivateScope, Public, Static, HideBySig
+    Sleep(Int32): PrivateScope, Public, Static, HideBySig
+    StatusBarGetText(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    StatusBarGetText(IntPtr, Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    ToolTip(String, Int32(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinActivate(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinActivate(IntPtr): PrivateScope, Public, Static, HideBySig
+    WinActive(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinActive(IntPtr): PrivateScope, Public, Static, HideBySig
+    WinExists(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinExists(IntPtr): PrivateScope, Public, Static, HideBySig
+    WinClose(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinClose(IntPtr): PrivateScope, Public, Static, HideBySig
+    WinGetCaretPos(): PrivateScope, Public, Static, HideBySig
+    WinGetClassList(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetClassList(IntPtr, Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetClientSize(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetClientSize(IntPtr): PrivateScope, Public, Static, HideBySig
+    WinGetHandle(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetHandleAsText(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetPos(String(Optional, HasDefault), String(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
+    WinGetPos(IntPtr): PrivateScope, Public, Static, HideBySig
+    WinGetProcess(String(Optional, HasDefault), String(Optional, HasDefault), Int32(Optional, HasDefault)): PrivateScope, Public, Static, HideBySig
