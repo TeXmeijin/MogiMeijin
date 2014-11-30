@@ -28,7 +28,7 @@ RequestExecutionLevel user
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
-    !define MUI_FINISHPAGE_RUN_TEXT "Start ${PACKAGE}"
+    !define MUI_FINISHPAGE_RUN_TEXT "せっかくやし、ついでに${PACKAGE}を起動する"
     !define MUI_FINISHPAGE_RUN "$INSTDIR\${NAME}.exe"
 !insertmacro MUI_PAGE_FINISH
 ;インストールのページ設定。順番に、ようこそページ、インストール先フォルダ指定ページ、インストール中ページ、完了ページ。
@@ -55,11 +55,15 @@ Section
   File /r "Release\css"
   File /r "Release\icon"
   File /r "Release\ja"
+  File /r "Release\sample"
   File "Release\*.dll"
   File "Release\*.xml"
   File "Release\*.exe"
   File "Release\*.pdb"
   File "Release\*.metagen"
+  File "Release\*.pdf"
+  File "Release\*.txt"
+  File "Release\*.png"
   
   SetShellVarContext all
   ; CreateDirectory "$SMPROGRAMS\${PACKAGE}"

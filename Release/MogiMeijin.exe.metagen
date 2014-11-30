@@ -9,8 +9,6 @@ Assembly MogiMeijin, Version=1.1.*, Culture=ロケールに依存しない言語
 	hash=SHA1, flags=PublicKey
 Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
-Assembly AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470: 
-	hash=None, flags=None
 Assembly Azuki, Version=1.7.11.24052, Culture=neutral, PublicKeyToken=46b77eb7f2d82aba: 
 	hash=None, flags=None
 Assembly Microsoft.VisualBasic, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
@@ -40,8 +38,6 @@ Assembly UIAutomationProvider, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 Assembly WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
 	hash=None, flags=None
 Assembly WindowsFormsIntegration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
-	hash=None, flags=None
-Assembly Interop.AutoItX3Lib.1.0, Version=1.0.*, Culture=ロケールに依存しない言語 (ロケールに依存しない国): 
 	hash=None, flags=None
 Assembly System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
 	hash=None, flags=None
