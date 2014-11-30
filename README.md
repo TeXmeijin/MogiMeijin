@@ -1,5 +1,7 @@
 In Japanese
 
+This software is released under the MIT License, see LICENSE.txt.
+
 =====================================================
 【ソ フ ト名】 MogiMeijin
 【バージョン】 1.0
