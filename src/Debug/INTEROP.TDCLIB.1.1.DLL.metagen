@@ -1,0 +1,168 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly Interop.TDCLib.1.1, Version=1.1.*, Culture=ロケールに依存しない言語 (ロケールに依存しない国): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Interface TDCLib.ITDCCtl: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, Import
+  Properties:
+    System.String FieldDelim 'get set' : 
+    System.String RowDelim 'get set' : 
+    System.String TextQualifier 'get set' : 
+    System.String EscapeChar 'get set' : 
+    Boolean UseHeader 'get set' : 
+    System.String SortColumn 'get set' : 
+    Boolean SortAscending 'get set' : 
+    System.String FilterValue 'get set' : 
+    System.String FilterCriterion 'get set' : 
+    System.String FilterColumn 'get set' : 
+    System.String CharSet 'get set' : 
+    System.String Language 'get set' : 
+    Boolean CaseSensitive 'get set' : 
+    System.String DataURL 'get set' : 
+    System.String Filter 'get set' : 
+    System.String Sort 'get set' : 
+    Int32 ReadyState 'get set' : 
+    Boolean AppendData 'get set' : 
+    System.Object OSP 'get ' : 
+  Methods:
+    get_FieldDelim(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FieldDelim(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_RowDelim(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_RowDelim(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_TextQualifier(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_TextQualifier(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_EscapeChar(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_EscapeChar(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_UseHeader(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_UseHeader(Boolean(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SortColumn(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_SortColumn(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_SortAscending(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_SortAscending(Boolean(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FilterValue(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FilterValue(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FilterCriterion(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FilterCriterion(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_FilterColumn(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_FilterColumn(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_CharSet(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_CharSet(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Language(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Language(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_CaseSensitive(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_CaseSensitive(Boolean(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_DataURL(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_DataURL(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    msDataSourceObject(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    addDataSourceListener(Object(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    Reset(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    _OnTimer(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    get_Filter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Filter(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_Sort(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_Sort(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_ReadyState(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_ReadyState(Int32(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_AppendData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    set_AppendData(Boolean(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+    get_OSP(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract, SpecialName
+Interface TDCLib.ITDCCtlEvents: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, Import
+  Methods:
+    onreadystatechange(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class TDCLib.CTDCCtlClass: AutoLayout, AnsiClass, Class, Public, Import
+  :System.__ComObject
+    Void .ctor(): PrivateScope, Public, SpecialName, RTSpecialName
+  Interfaces:
+    TDCLib.ITDCCtl
+    TDCLib.CTDCCtl
+    TDCLib.ITDCCtlEvents_Event
+  Properties:
+    System.String FieldDelim 'get set' : 
+    System.String RowDelim 'get set' : 
+    System.String TextQualifier 'get set' : 
+    System.String EscapeChar 'get set' : 
+    Boolean UseHeader 'get set' : 
+    System.String SortColumn 'get set' : 
+    Boolean SortAscending 'get set' : 
+    System.String FilterValue 'get set' : 
+    System.String FilterCriterion 'get set' : 
+    System.String FilterColumn 'get set' : 
+    System.String CharSet 'get set' : 
+    System.String Language 'get set' : 
+    Boolean CaseSensitive 'get set' : 
+    System.String DataURL 'get set' : 
+    System.String Filter 'get set' : 
+    System.String Sort 'get set' : 
+    Int32 ReadyState 'get set' : 
+    Boolean AppendData 'get set' : 
+    System.Object OSP 'get ' : 
+  Events:
+    TDCLib.ITDCCtlEvents_onreadystatechangeEventHandler onreadystatechange: 
+  Methods:
+    get_FieldDelim(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_FieldDelim(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_RowDelim(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_RowDelim(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_TextQualifier(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_TextQualifier(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_EscapeChar(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_EscapeChar(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_UseHeader(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_UseHeader(Boolean(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_SortColumn(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_SortColumn(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_SortAscending(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_SortAscending(Boolean(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_FilterValue(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_FilterValue(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_FilterCriterion(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_FilterCriterion(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_FilterColumn(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_FilterColumn(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_CharSet(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_CharSet(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Language(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Language(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_CaseSensitive(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_CaseSensitive(Boolean(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_DataURL(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_DataURL(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    msDataSourceObject(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    addDataSourceListener(Object(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    Reset(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    _OnTimer(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    get_Filter(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Filter(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_Sort(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_Sort(String(In, HasFieldMarshal)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_ReadyState(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_ReadyState(Int32(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_AppendData(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    set_AppendData(Boolean(In)): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    get_OSP(): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, SpecialName
+    add_onreadystatechange(ITDCCtlEvents_onreadystatechangeEventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+    remove_onreadystatechange(ITDCCtlEvents_onreadystatechangeEventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask
+Interface TDCLib.ITDCCtlEvents_Event: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract
+  Events:
+    TDCLib.ITDCCtlEvents_onreadystatechangeEventHandler onreadystatechange: 
+  Methods:
+    add_onreadystatechange(ITDCCtlEvents_onreadystatechangeEventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+    remove_onreadystatechange(ITDCCtlEvents_onreadystatechangeEventHandler): PrivateScope, Public, Virtual, HideBySig, VtableLayoutMask, Abstract
+Class TDCLib.ITDCCtlEvents_onreadystatechangeEventHandler: AutoLayout, AnsiClass, Class, Public, Sealed
+  :System.MulticastDelegate
+    Void .ctor(System.Object, UIntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(): PrivateScope, Public, Virtual
+Interface TDCLib.CTDCCtl: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, Import
+  Interfaces:
+    TDCLib.ITDCCtl
+    TDCLib.ITDCCtlEvents_Event
+Interface TDCLib.IAmTheTDC: AutoLayout, AnsiClass, Class, Public, ClassSemanticsMask, Abstract, Import
+Class TDCLib.ITDCCtlEvents_SinkHelper: AutoLayout, AnsiClass, Class, Public, Sealed
+  Interfaces:
+    TDCLib.ITDCCtlEvents
+  Fields:
+    TDCLib.ITDCCtlEvents_onreadystatechangeEventHandler m_onreadystatechangeDelegate : Public
+    Int32 m_dwCookie : Public
+  Methods:
+    onreadystatechange(): PrivateScope, Public, Virtual
