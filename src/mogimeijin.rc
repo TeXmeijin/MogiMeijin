@@ -1,0 +1,30 @@
+#include <windows.h> 
+
+VS_VERSION_INFO    VERSIONINFO
+FILEVERSION        0,1,0,1
+PRODUCTVERSION     0,1,0,1
+FILEFLAGSMASK      VS_FFI_FILEFLAGSMASK
+FILEFLAGS          0x0L
+FILEOS             VOS_NT_WINDOWS32
+FILETYPE           VFT_APP
+FILESUBTYPE        VFT2_UNKNOWN
+BEGIN    
+	BLOCK "StringFileInfo"    
+	BEGIN        
+		BLOCK "000004b0" // Neutral language, Unicode
+		BEGIN            
+			VALUE "CompanyName",      ""
+			VALUE "FileDescription",  "application"            
+			VALUE "FileVersion",      "0.1.0.1"            
+			VALUE "InternalName",     "mogimeijin.exe"            
+			VALUE "LegalCopyright",   "Copyright (c) 2014 Yusuke Saitoh"            
+			VALUE "OriginalFilename", "mogimeijin.exe"            
+			VALUE "ProductName",      "mogimeijin"            
+			VALUE "ProductVersion",   "0.1.0.1"        
+			END     
+		END    
+		BLOCK "VarFileInfo"    
+		BEGIN        
+			VALUE "Translation", 0x0, 1200 // Neutral language, Unicode    
+		END
+END 

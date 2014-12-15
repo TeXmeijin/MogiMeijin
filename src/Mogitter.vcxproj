@@ -209,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
+    <ResourceCompile Include="mogimeijin.rc" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="help_mt.txt" />

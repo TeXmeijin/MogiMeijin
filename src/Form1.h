@@ -571,6 +571,7 @@ namespace Mogitter {
 			this->azukiArea->ViewWidth = 580;
 			this->azukiArea->CaretMoved += gcnew System::EventHandler(this, &Form1::azukiArea_CaretMoved);
 			this->azukiArea->TextChanged += gcnew System::EventHandler(this, &Form1::azukiArea_TextChanged);
+			this->azukiArea->Enter += gcnew System::EventHandler(this, &Form1::azukiArea_Enter);
 			this->azukiArea->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::sampleKeyDown);
 			this->azukiArea->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::azukiArea_KeyUp);
 			this->azukiArea->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &Form1::tArea_MouseUp);
@@ -1023,5 +1024,8 @@ namespace Mogitter {
 					 ctrlPusing=false; 
 				 }
 			 }
-};
+	private: System::Void azukiArea_Enter(System::Object^  sender, System::EventArgs^  e) {
+				 ctrlPusing=false;
+			 }
+	};
 }

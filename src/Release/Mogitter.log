@@ -1,21 +1,42 @@
-﻿  Form1.cpp
-  MogiMeijin.cpp
-  Terminal.cpp
-  コードを生成中...
-  Microsoft (R) Incremental Linker Version 11.00.50727.1
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  
-  "/OUT:F:\Meijin4\C++\Mogitter\Release\MogiMeijin.exe" "/VERSION:1" /INCREMENTAL:NO /ASSEMBLYRESOURCE:Release\Mogitter.Form1.resources /ASSEMBLYRESOURCE:Release\Mogitter.MogiTest.resources /ASSEMBLYRESOURCE:Release\Mogitter.QBuild.resources /ASSEMBLYRESOURCE:Release\Mogitter.QMarking.resources /ASSEMBLYRESOURCE:Release\Mogitter.Sprash.resources /ASSEMBLYRESOURCE:Release\Mogitter.Terminal.resources /MANIFEST "/MANIFESTUAC:level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG "/PDB:F:\Meijin4\C++\Mogitter\Release\MogiMeijin.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 "/ENTRY:main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /SAFESEH Release\app.res 
-  Release\AssemblyInfo.obj 
-  Release\Form1.obj 
-  Release\MogiTest.obj 
-  Release\MogiMeijin.obj 
-  Release\MyTools.obj 
-  Release\QBuild.obj 
-  Release\QMarking.obj 
-  Release\ShareData.obj 
-  Release\Sprash.obj 
-  Release\stdafx.obj 
-  Release\Terminal.obj 
-  "Release\.NETFramework,Version=v4.0.AssemblyAttributes.obj" 
-  Mogitter.vcxproj -> F:\Meijin4\C++\Mogitter\Release\MogiMeijin.exe
+﻿2014/12/12 10:30:24 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "F:\Meijin4\C++\Mogitter\Mogitter\Mogitter.vcxproj" (Build ターゲット)。
+     1>ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\mogimeijin.res" mogimeijin.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Meijin4\C++\Mogitter\Release\MogiMeijin.exe" /VERSION:"1" /INCREMENTAL:NO /ASSEMBLYRESOURCE:Release\Mogitter.Form1.resources /ASSEMBLYRESOURCE:Release\Mogitter.MogiTest.resources /ASSEMBLYRESOURCE:Release\Mogitter.QBuild.resources /ASSEMBLYRESOURCE:Release\Mogitter.QMarking.resources /ASSEMBLYRESOURCE:Release\Mogitter.Sprash.resources /ASSEMBLYRESOURCE:Release\Mogitter.Terminal.resources /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Meijin4\C++\Mogitter\Release\MogiMeijin.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /SAFESEH Release\app.res
+         Release\mogimeijin.res
+         Release\AssemblyInfo.obj
+         Release\Form1.obj
+         Release\MogiTest.obj
+         Release\MogiMeijin.obj
+         Release\MyTools.obj
+         Release\QBuild.obj
+         Release\QMarking.obj
+         Release\ShareData.obj
+         Release\Sprash.obj
+         Release\stdafx.obj
+         Release\Terminal.obj
+         "Release\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
+         Microsoft (R) Incremental Linker Version 11.00.61030.0
+         Copyright (C) Microsoft Corporation.  All rights reserved.
+         
+         "/OUT:F:\Meijin4\C++\Mogitter\Release\MogiMeijin.exe" "/VERSION:1" /INCREMENTAL:NO /ASSEMBLYRESOURCE:Release\Mogitter.Form1.resources /ASSEMBLYRESOURCE:Release\Mogitter.MogiTest.resources /ASSEMBLYRESOURCE:Release\Mogitter.QBuild.resources /ASSEMBLYRESOURCE:Release\Mogitter.QMarking.resources /ASSEMBLYRESOURCE:Release\Mogitter.Sprash.resources /ASSEMBLYRESOURCE:Release\Mogitter.Terminal.resources /MANIFEST "/MANIFESTUAC:level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG "/PDB:F:\Meijin4\C++\Mogitter\Release\MogiMeijin.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /TLBID:1 "/ENTRY:main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /SAFESEH Release\app.res 
+         Release\mogimeijin.res 
+         Release\AssemblyInfo.obj 
+         Release\Form1.obj 
+         Release\MogiTest.obj 
+         Release\MogiMeijin.obj 
+         Release\MyTools.obj 
+         Release\QBuild.obj 
+         Release\QMarking.obj 
+         Release\ShareData.obj 
+         Release\Sprash.obj 
+         Release\stdafx.obj 
+         Release\Terminal.obj 
+         "Release\.NETFramework,Version=v4.0.AssemblyAttributes.obj" 
+         Mogitter.vcxproj -> F:\Meijin4\C++\Mogitter\Release\MogiMeijin.exe
+     1>プロジェクト "F:\Meijin4\C++\Mogitter\Mogitter\Mogitter.vcxproj" (Build ターゲット) のビルドが完了しました。
+
+ビルドに成功しました。
+
+経過時間 00:00:22.92

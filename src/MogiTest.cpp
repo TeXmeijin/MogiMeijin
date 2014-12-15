@@ -493,6 +493,7 @@ void MogiTest::moveQ(System::Object^  sender, System::Windows::Forms::KeyEventAr
 	}
 	if ((!shift ||  e->Modifiers == Keys::Shift) && e->KeyCode == Keys::Enter)
 	{
+		e->Handled = true;
 		int val = Decimal::ToInt32(QNumUpDown->Value);
 		setNumberScroll(val);
 		try{
@@ -599,6 +600,7 @@ void MogiTest::MogiTest_Shown(System::Object^  sender, System::EventArgs^  e) {
 }
 
 void MogiTest::revenge_Click(System::Object^  sender, System::EventArgs^  e) {
+	marubatsu->ClearKeywords();
 	if (onlyMissCB->Checked)
 	{
 		compile(randomAftTxt); 
@@ -620,9 +622,15 @@ void MogiTest::changeAnswer(String^ txt){
 	}else{
 		if(sentakuGroup->Enabled)
 			return;
+		//if (bunsyoudai->Tag=="#" || anaumeAnsBox->Tag=="#")
+		//{
+		//	MessageBox::Show("###"+seleNum);
+		//	return;
+		//}
 		//userAnswerArea->Text = "";
-		if (answerStrings->Count >= seleNum)
+		if (answerStrings->Count >= seleNum)// && txt->Length>0
 		{
+			//MessageBox::Show(seleNum+":"+txt);
 			answerStrings[seleNum-1] = txt;
 		}
 		//commitAnswer();
@@ -644,6 +652,7 @@ void MogiTest::commitAnswer2(int seleNum){
 	try{
 		int begin = userAnswerArea->GetLineHeadIndex(seleNum-1);
 		int end = begin + userAnswerArea->GetLineLength(seleNum-1);
+
 
 		if (answerStrings[seleNum-1]->Length <= 0)
 		{
@@ -741,17 +750,23 @@ void MogiTest::qnumDoing(){
 
 		String^ seleCombo = escapeSet(questStrings[seleNum-1]);
 		array<String^>^ splStrs = seleCombo->Split(',');
+
+		//!!!
+		sentakushiCombo->Items->Clear();
+		sentakushiCombo->Items->Add(ShareData::noneString);
+
 		//書式："1,(answer)"
 		//書式："4,(ansNum),aaa:bbb:ccc:ddd"
 		if(int::Parse(splStrs[0])>1){
 			anaumeGroup->Enabled = false;
 			sentakuGroup->Enabled = true;
 			bunsyouBox->Enabled = false;
-			anaumeAnsBox->Text = "";//?????
+
+			//anaumeAnsBox->Text = "";//?????
+			//bunsyoudai->Text="";
+
 			array<String^>^ items = splStrs[2]->Split(':');
-			sentakushiCombo->Items->Clear();
 			sentakushiCombo->Sorted=false;//!!!
-			sentakushiCombo->Items->Add(ShareData::noneString);
 			for each(String^ item in items){
 				item = escapeReSet(item);
 				if(item->Length>0)
@@ -764,16 +779,20 @@ void MogiTest::qnumDoing(){
 				sentakushiCombo->SelectedItem = alreadyAns;
 			sentakushiCombo->Focus();
 		}else{
-			sentakushiCombo->Items->Clear();
 			sentakushiCombo->Sorted=true;
-			sentakushiCombo->Items->Add(ShareData::noneString);
 
 			if (splStrs->Length>=3 && splStrs[2]=="describe")
 			{
 				sentakuGroup->Enabled = false;
 				anaumeGroup->Enabled = false;
 				bunsyouBox->Enabled = true;
-				bunsyoudai->Text = getLineText(userAnswerArea,seleNum)->Trim();
+				if (seleNum<=answerStrings->Count)
+				{
+					bunsyoudai->Tag="#";
+					bunsyoudai->Text = answerStrings[seleNum-1]->Trim(); 
+					bunsyoudai->Tag="";
+				}
+				//anaumeAnsBox->Text = "";
 				bunsyoudai->SelectAll();
 				bunsyoudai->Focus();
 			}
@@ -784,15 +803,15 @@ void MogiTest::qnumDoing(){
 					sentakuGroup->Enabled = true;
 					anaumeGroup->Enabled = false;
 					bunsyouBox->Enabled = false;
-					sentakushiCombo->Items->Clear();
-					sentakushiCombo->Items->Add(ShareData::noneString);
 					for each (String^ gun in kaitouGunList)
 					{
 						String^ item = escapeReSet(gun);
 						if(item->Length>0)
 							sentakushiCombo->Items->Add(item);
 					}
-					String^ alreadyAns = getLineText(userAnswerArea,seleNum)->Trim();
+					String^ alreadyAns = "";
+					if (seleNum<=answerStrings->Count)
+						alreadyAns = answerStrings[seleNum-1]->Trim();
 					if(alreadyAns->Length == 0)
 						sentakushiCombo->SelectedIndex = 0;
 					else
@@ -800,10 +819,17 @@ void MogiTest::qnumDoing(){
 					sentakushiCombo->Focus();
 				}else
 				{
+					//bunsyoudai->Text="";
+
 					sentakuGroup->Enabled = false;
 					anaumeGroup->Enabled = true;
 					bunsyouBox->Enabled = false;
-					anaumeAnsBox->Text = getLineText(userAnswerArea,seleNum)->Trim();
+					if (seleNum<=answerStrings->Count){
+						//MessageBox::Show("\""+answerStrings[seleNum-1]+"\"");
+						anaumeAnsBox->Tag="#";
+						anaumeAnsBox->Text = answerStrings[seleNum-1]->Trim();
+						anaumeAnsBox->Tag="";
+					}
 					anaumeAnsBox->SelectAll();
 					anaumeAnsBox->Focus(); 
 				}
@@ -824,7 +850,7 @@ void MogiTest::setCollects(){
 		}else if(int::Parse(kugirin[0])>0){
 			if (kugirin->Length>2 && kugirin[2]->Equals("describe"))
 			{
-				ans = escapeReSet(kugirin[1])+"\ndescribe";
+				ans = escapeReSet(kugirin[1])+"\fdescribe";
 			}else
 			{
 				ans = escapeReSet(kugirin[1]);
@@ -859,13 +885,13 @@ void MogiTest::marking(){
 	marubatsu->AddKeywordSet(maru,Sgry::Azuki::CharClass::Function);
 	marubatsu->AddKeywordSet(batsu,Sgry::Azuki::CharClass::Property);
 	for(int i=0;i<collects->Length;i++){
-		if (collects[i]->EndsWith("\ndescribe"))
+		if (collects[i]->EndsWith("\fdescribe"))
 		{
 			array<String^>^ colKwd2 = gcnew array<String^>(1);
-			colKwd2[0] = collects[i]->Split('\n')[0]+"";
+			colKwd2[0] = collects[i]->Split('\f')[0]+"";
 			marubatsu->AddKeywordSet(colKwd2,Sgry::Azuki::CharClass::DocComment);
 			array<String^>^ colKwd = gcnew array<String^>(1);
-			colKwd[0] = collects[i]->Split('\n')[0]+" ";
+			colKwd[0] = collects[i]->Split('\f')[0]+" ";
 			marubatsu->AddKeywordSet(colKwd,Sgry::Azuki::CharClass::Function);
 		}else
 			if (collects[i]->IndexOf("\t") < 0)
@@ -927,13 +953,17 @@ void MogiTest::timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 		marubatsu->AddKeywordSet(colKwd,Sgry::Azuki::CharClass::Function);
 	}
 	String^ mohan = collects[i];
+	if (collects[i]->EndsWith("\fdescribe"))
+	{
+		mohan=collects[i]->Split('\f')[0];
+	}
 	if(line->Trim()->Length <= 0)
 	{
 		userAnswerArea->Document->Replace("× " + mohan+" ",head,head+len);
 	}
-	else 	if (collects[i]->EndsWith("\ndescribe"))
+	else 	if (collects[i]->EndsWith("\fdescribe"))
 	{
-		mohan=collects[i]->Split('\n')[0];
+		//mohan=collects[i]->Split('\f')[0];
 		if (line->Equals(mohan))
 		{
 			IsSeikai=true;
@@ -956,7 +986,7 @@ void MogiTest::timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 	}
 	else if(IsSeikai)
 	{
-		if (collects[i]->EndsWith("\ndescribe"))
+		if (collects[i]->EndsWith("\fdescribe"))
 		{
 			line+=" ( 模範解答： "+mohan+") ";
 		}
@@ -987,7 +1017,7 @@ void MogiTest::htmlOUTPUT_Click(System::Object^  sender, System::EventArgs^  e) 
 		{
 			//<font color=red >○ 均一</font>  ->  +=" ( 模範解答： "+mohan+" ) "
 			String^ mohan=collects[i]->Split('\n')[0];
-			if (collects[i]->EndsWith("\ndescribe") && answerStrings[i]!=mohan)
+			if (collects[i]->EndsWith("\fdescribe") && answerStrings[i]!=mohan)
 			{
 				writeStrs[i]=" <em class=\"maru\">○</em> <em class=\"describe\">"+answerStrings[i]+" </em>( 模範解答： <em class=\"match\">"+mohan+"</em>) ";
 			}else
@@ -1001,7 +1031,7 @@ void MogiTest::htmlOUTPUT_Click(System::Object^  sender, System::EventArgs^  e) 
 			//<font color=blue>×</font>  <font color=red>論理</font>
 			if (answerStrings[i]->Length > 0 && answerStrings[i] != " ")
 			{
-				if (collects[i]->EndsWith("\ndescribe"))
+				if (collects[i]->EndsWith("\fdescribe"))
 				{
 					String^ mohan=collects[i]->Split('\n')[0];
 					writeStrs[i]=" <em class=\"batsu\">×</em><em class=\"mistake\">"+answerStrings[i]+"</em> "+" ( 模範解答： <em class=\"match\">"+mohan+"</em>)";
@@ -1010,7 +1040,7 @@ void MogiTest::htmlOUTPUT_Click(System::Object^  sender, System::EventArgs^  e) 
 			}
 			else if (answerStrings[i]->Length == 0 || answerStrings[i]==" ")
 			{
-				if (collects[i]->EndsWith("\ndescribe"))
+				if (collects[i]->EndsWith("\fdescribe"))
 				{
 					String^ mohan=collects[i]->Split('\n')[0];
 					//<em class=\"batsu\">×</em>
