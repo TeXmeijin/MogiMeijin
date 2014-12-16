@@ -21,8 +21,7 @@ The development language is Visual C++/CLI.
 
 The movement environment is Windows.
 Windows after seven work surely. If .NET Framework4.5 exists before Vista, it works.
-Possibly it may work even if I do not enter.
-I cannot work in Mac.
+This cannot work in Mac.
 
 But a demonstration (AutoIt) that I bundled it with as help file does not seem to move other than Windows 7 definitely somehow or other. That is why the person except Windows 7 should not carry out a demonstration.
 
