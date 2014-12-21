@@ -146,7 +146,7 @@ namespace Mogitter {
 	private: System::Windows::Forms::Panel^  panel1;
 	private: System::Windows::Forms::GroupBox^  bunsyouBox;
 
-	private: Sgry::Azuki::WinForms::AzukiControl^  bunsyoudai;
+
 
 	private: System::Windows::Forms::Button^  revenge;
 	private: System::Windows::Forms::Label^  label7;
@@ -160,6 +160,9 @@ namespace Mogitter {
 	private: Sgry::Azuki::WinForms::AzukiControl^  userAnswerArea;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::PictureBox^  ImageQuest;
+private: System::Windows::Forms::RichTextBox^  bunsyoudai;
+private: System::Windows::Forms::SplitContainer^  splitContainer2;
+private: System::Windows::Forms::PictureBox^  pictureBox1;
 
 
 
@@ -192,7 +195,6 @@ namespace Mogitter {
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MogiTest::typeid));
 			Sgry::Azuki::FontInfo^  fontInfo1 = (gcnew Sgry::Azuki::FontInfo());
 			Sgry::Azuki::FontInfo^  fontInfo2 = (gcnew Sgry::Azuki::FontInfo());
-			Sgry::Azuki::FontInfo^  fontInfo3 = (gcnew Sgry::Azuki::FontInfo());
 			this->time_limit = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->anaumeGroup = (gcnew System::Windows::Forms::GroupBox());
@@ -225,8 +227,10 @@ namespace Mogitter {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->revenge = (gcnew System::Windows::Forms::Button());
 			this->bunsyouBox = (gcnew System::Windows::Forms::GroupBox());
-			this->bunsyoudai = (gcnew Sgry::Azuki::WinForms::AzukiControl());
+			this->bunsyoudai = (gcnew System::Windows::Forms::RichTextBox());
 			this->openHTML = (gcnew System::Diagnostics::Process());
+			this->splitContainer2 = (gcnew System::Windows::Forms::SplitContainer());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->anaumeGroup->SuspendLayout();
 			this->sentakuGroup->SuspendLayout();
 			this->menuStrip1->SuspendLayout();
@@ -242,6 +246,11 @@ namespace Mogitter {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ImageQuest))->BeginInit();
 			this->panel1->SuspendLayout();
 			this->bunsyouBox->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->splitContainer2))->BeginInit();
+			this->splitContainer2->Panel1->SuspendLayout();
+			this->splitContainer2->Panel2->SuspendLayout();
+			this->splitContainer2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// time_limit
@@ -470,8 +479,8 @@ namespace Mogitter {
 			// splitContainer1.Panel1
 			// 
 			this->splitContainer1->Panel1->BackColor = System::Drawing::SystemColors::Control;
+			this->splitContainer1->Panel1->Controls->Add(this->splitContainer2);
 			this->splitContainer1->Panel1->Controls->Add(this->time_limit);
-			this->splitContainer1->Panel1->Controls->Add(this->QuestSentence);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -503,12 +512,12 @@ namespace Mogitter {
 			this->QuestSentence->HighlightsCurrentLine = false;
 			this->QuestSentence->HighlightsMatchedBracket = false;
 			this->QuestSentence->IsReadOnly = true;
-			this->QuestSentence->Location = System::Drawing::Point(0, 27);
+			this->QuestSentence->Location = System::Drawing::Point(0, 0);
 			this->QuestSentence->Name = L"QuestSentence";
 			this->QuestSentence->ScrollPos = System::Drawing::Point(0, 0);
 			this->QuestSentence->ShowsDirtBar = false;
 			this->QuestSentence->ShowsHScrollBar = false;
-			this->QuestSentence->Size = System::Drawing::Size(686, 403);
+			this->QuestSentence->Size = System::Drawing::Size(684, 396);
 			this->QuestSentence->TabIndex = 1;
 			this->QuestSentence->TabStop = false;
 			this->QuestSentence->ViewType = Sgry::Azuki::ViewType::WrappedProportional;
@@ -681,31 +690,13 @@ namespace Mogitter {
 			// 
 			// bunsyoudai
 			// 
-			this->bunsyoudai->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(250)), 
-				static_cast<System::Int32>(static_cast<System::Byte>(240)));
-			this->bunsyoudai->Cursor = System::Windows::Forms::Cursors::IBeam;
-			this->bunsyoudai->DrawingOption = static_cast<Sgry::Azuki::DrawingOption>(((((Sgry::Azuki::DrawingOption::DrawsFullWidthSpace | Sgry::Azuki::DrawingOption::DrawsTab) 
-				| Sgry::Azuki::DrawingOption::DrawsEol) 
-				| Sgry::Azuki::DrawingOption::ShowsDirtBar) 
-				| Sgry::Azuki::DrawingOption::HighlightsMatchedBracket));
-			this->bunsyoudai->FirstVisibleLine = 0;
-			this->bunsyoudai->Font = (gcnew System::Drawing::Font(L"メイリオ", 12));
-			fontInfo3->Name = L"メイリオ";
-			fontInfo3->Size = 12;
-			fontInfo3->Style = System::Drawing::FontStyle::Regular;
-			this->bunsyoudai->FontInfo = fontInfo3;
-			this->bunsyoudai->ForeColor = System::Drawing::Color::Black;
-			this->bunsyoudai->HighlightsCurrentLine = false;
-			this->bunsyoudai->IsSingleLineMode = true;
-			this->bunsyoudai->Location = System::Drawing::Point(10, 27);
+			this->bunsyoudai->Font = (gcnew System::Drawing::Font(L"メイリオ", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(128)));
+			this->bunsyoudai->Location = System::Drawing::Point(10, 26);
 			this->bunsyoudai->Name = L"bunsyoudai";
-			this->bunsyoudai->ScrollPos = System::Drawing::Point(0, 0);
-			this->bunsyoudai->ShowsHScrollBar = false;
-			this->bunsyoudai->ShowsLineNumber = false;
-			this->bunsyoudai->Size = System::Drawing::Size(274, 112);
+			this->bunsyoudai->Size = System::Drawing::Size(273, 117);
 			this->bunsyoudai->TabIndex = 0;
-			this->bunsyoudai->ViewType = Sgry::Azuki::ViewType::WrappedProportional;
-			this->bunsyoudai->ViewWidth = 210;
+			this->bunsyoudai->Text = L"";
 			this->bunsyoudai->TextChanged += gcnew System::EventHandler(this, &MogiTest::bunsyoudai_TextChanged);
 			this->bunsyoudai->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MogiTest::bunsyoudai_KeyDown);
 			// 
@@ -718,6 +709,38 @@ namespace Mogitter {
 			this->openHTML->StartInfo->StandardOutputEncoding = nullptr;
 			this->openHTML->StartInfo->UserName = L"";
 			this->openHTML->SynchronizingObject = this;
+			// 
+			// splitContainer2
+			// 
+			this->splitContainer2->Location = System::Drawing::Point(0, 30);
+			this->splitContainer2->Name = L"splitContainer2";
+			this->splitContainer2->Orientation = System::Windows::Forms::Orientation::Horizontal;
+			// 
+			// splitContainer2.Panel1
+			// 
+			this->splitContainer2->Panel1->Controls->Add(this->QuestSentence);
+			this->splitContainer2->Panel1MinSize = 0;
+			// 
+			// splitContainer2.Panel2
+			// 
+			this->splitContainer2->Panel2->Controls->Add(this->pictureBox1);
+			this->splitContainer2->Panel2Collapsed = true;
+			this->splitContainer2->Panel2MinSize = 0;
+			this->splitContainer2->Size = System::Drawing::Size(684, 399);
+			this->splitContainer2->SplitterDistance = 332;
+			this->splitContainer2->TabIndex = 1;
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom) 
+				| System::Windows::Forms::AnchorStyles::Left) 
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->pictureBox1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->pictureBox1->Location = System::Drawing::Point(0, -1);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(684, 64);
+			this->pictureBox1->TabIndex = 0;
+			this->pictureBox1->TabStop = false;
 			// 
 			// MogiTest
 			// 
@@ -756,6 +779,11 @@ namespace Mogitter {
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			this->bunsyouBox->ResumeLayout(false);
+			this->splitContainer2->Panel1->ResumeLayout(false);
+			this->splitContainer2->Panel2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->splitContainer2))->EndInit();
+			this->splitContainer2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -918,6 +946,5 @@ namespace Mogitter {
 	private: System::Void sentakushiCombo_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 
 
-
-	};
+};
 }

@@ -356,9 +356,9 @@ bool MogiTest::compile(String^ text){
 	setTime_Limit();
 
 	for(int i = 0;i<qCount;i++){
-		answerStrings->Add("");
+		answerStrings->Add(" ");
 		userAnswerArea->Text +=answerStrings[i];
-		userAnswerArea->Text += " ";
+		userAnswerArea->Text += "";
 		if (i<qCount-1)
 		{
 			userAnswerArea->Text += "\n";
@@ -405,10 +405,12 @@ void MogiTest::MogiTest_Load(System::Object^  sender, System::EventArgs^  e) {
 	this->Icon = gcnew System::Drawing::Icon(MyTools::getApplicationDirectory()+"\\"+"icon\\Copy.ico");
 
 	this->QuestSentence->BackColor = System::Drawing::Color::Ivory;
+	this->anaumeAnsBox->BackColor=System::Drawing::Color::Ivory;
+	this->bunsyoudai->BackColor=System::Drawing::Color::Ivory;
 	userAnswerArea->BackColor = Color::White;
 
 	QuestSentence->ViewWidth = QuestSentence->ClientSize.Width;
-	bunsyoudai->ViewWidth = bunsyoudai->ClientSize.Width;
+	//bunsyoudai->ViewWidth = bunsyoudai->ClientSize.Width;
 	userAnswerArea->ViewWidth=userAnswerArea->ClientSize.Width-5;
 
 	marubatsu = 
@@ -439,7 +441,7 @@ void MogiTest::MogiTest_Load(System::Object^  sender, System::EventArgs^  e) {
 
 	userAnswerArea->ViewWidth = userAnswerArea->ClientSize.Width-5;
 
-	bunsyoudai->ShowsHScrollBar=false;
+	//bunsyoudai->ShowsHScrollBar=false;
 
 	answerImageSplitter->SplitterDistance=692;
 
@@ -479,7 +481,7 @@ void MogiTest::moveQ(System::Object^  sender, System::Windows::Forms::KeyEventAr
 			QNumUpDown->Value = Decimal::ToInt32(QNumUpDown->Value)-1;
 			//QNumUpDown_ValueChanged(sender,gcnew EventArgs());
 		}
-	}else if((!shift ||  e->Modifiers == Keys::Shift) && e->KeyCode == Keys::Enter)
+	}else if(e->KeyCode == Keys::Enter)//(!shift ||  e->Modifiers == Keys::Shift) && 
 	{
 		e->Handled = true;
 		sentakushiCombo->DroppedDown=false;
@@ -622,9 +624,9 @@ void MogiTest::changeAnswer(String^ txt){
 	}else{
 		if(sentakuGroup->Enabled)
 			return;
-		//if (bunsyoudai->Tag=="#" || anaumeAnsBox->Tag=="#")
+		//if (bunsyoudai->Tag=="#")
 		//{
-		//	MessageBox::Show("###"+seleNum);
+		//	//MessageBox::Show("###"+seleNum);
 		//	return;
 		//}
 		//userAnswerArea->Text = "";
@@ -656,8 +658,9 @@ void MogiTest::commitAnswer2(int seleNum){
 
 		if (answerStrings[seleNum-1]->Length <= 0)
 		{
-			answerStrings[seleNum-1] = " ";
+			//answerStrings[seleNum-1] = " ";
 		}
+		//Debug::WriteLine("\""+answerStrings[seleNum-1]+"\">>>"+seleNum);
 		userAnswerArea->Document->Replace(answerStrings[seleNum-1],begin,end);
 		int val = Decimal::ToInt32(QNumUpDown->Value);
 		int head = userAnswerArea->GetLineHeadIndex(val-1);
@@ -722,12 +725,12 @@ System::Void MogiTest::sentakushiCombo_SelectedIndexChanged(System::Object^  sen
 		String^ ansMe = (String^)(sentakushiCombo->SelectedItem);
 		if(ansMe == ShareData::noneString)
 		{
-			ansMe = "";
-		}
-		//userAnswerArea->Text = "";
-		try{
-			answerStrings[seleNum-1] = ansMe;
-			commitAnswer2(seleNum);
+			
+		}else
+			//userAnswerArea->Text = "";
+			try{
+				answerStrings[seleNum-1] = ansMe;
+				commitAnswer2(seleNum);
 		}catch(ArgumentOutOfRangeException^){
 		}
 	}
