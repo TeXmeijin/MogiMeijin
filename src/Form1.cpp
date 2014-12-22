@@ -726,15 +726,15 @@ void Form1::Send(String^ txt)
 }
 
 void Form1::autoitInvoke(){
-	FileInfo^ fi=gcnew FileInfo(Application::ExecutablePath);
-	doHelp->StartInfo->FileName=fi->DirectoryName+"\\AutoIt\\try.exe";
+	doHelp->StartInfo->FileName=MyTools::getApplicationDirectory()+"\\_MogiMeijinŽæˆµà–¾‘.pdf";
+	doHelp->StartInfo->UseShellExecute=true;
 	//doHelp->StartInfo->Arguments=fi->DirectoryName+"\\uwsc\\help.UWS";
 	doHelp->Start();
 }
 
 void Form1::helpMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	open("AutoIt\\japan_Constitution.txt");
-	this->ImeMode=Windows::Forms::ImeMode::Hiragana;
+	//open("AutoIt\\japan_Constitution.txt");
+	//this->ImeMode=Windows::Forms::ImeMode::Hiragana;
 
 	System::Threading::ThreadStart^ ts = gcnew System::Threading::ThreadStart(this,&Form1::autoitInvoke);
 	System::Threading::Thread^ th = gcnew System::Threading::Thread(ts);

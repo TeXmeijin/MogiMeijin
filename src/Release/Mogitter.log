@@ -1,15 +1,4 @@
-﻿  stdafx.cpp
-  AssemblyInfo.cpp
-  Form1.cpp
-  MogiMeijin.cpp
-  MogiTest.cpp
-  MyTools.cpp
-  QBuild.cpp
-  QMarking.cpp
-  ShareData.cpp
-  Sprash.cpp
-  Terminal.cpp
-  コードを生成中...
+﻿  Form1.cpp
   Microsoft (R) Incremental Linker Version 11.00.50727.1
   Copyright (C) Microsoft Corporation.  All rights reserved.
   

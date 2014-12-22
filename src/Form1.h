@@ -780,9 +780,9 @@ namespace Mogitter {
 			// doHelp
 			// 
 			this->doHelp->EnableRaisingEvents = true;
-			this->doHelp->StartInfo->Arguments = L".\\uwsc\\GruGru.UWS";
+			this->doHelp->StartInfo->CreateNoWindow = true;
 			this->doHelp->StartInfo->Domain = L"";
-			this->doHelp->StartInfo->FileName = L".\\uwsc\\UWSC.exe";
+			this->doHelp->StartInfo->FileName = L"_MogiMeijinŽæˆµà–¾‘.pdf";
 			this->doHelp->StartInfo->LoadUserProfile = false;
 			this->doHelp->StartInfo->Password = nullptr;
 			this->doHelp->StartInfo->StandardErrorEncoding = nullptr;
@@ -1010,13 +1010,13 @@ namespace Mogitter {
 				 }
 			 }
 	private: System::Void doHelp_Exited(System::Object^  sender, System::EventArgs^  e) {
-				 if (fileName->Length>0)
-				 {
-					 open(fileName);
-				 }else
-				 {
-					 newMakeItem_Click(sender,e);
-				 }
+				 //if (fileName->Length>0)
+				 //{
+					// open(fileName);
+				 //}else
+				 //{
+					// newMakeItem_Click(sender,e);
+				 //}
 			 }
 	private: System::Void azukiArea_KeyUp(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 				 if (e->KeyCode==Keys::F5)
