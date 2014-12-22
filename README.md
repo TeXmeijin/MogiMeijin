@@ -7,7 +7,7 @@ This software is released under the GPL License, see LICENSE.txt.
 [software name] MogiMeijin
 [version] 1.0
 [copyright holder] is a freeware 
-[software classification] in Yusuke Saito, November, 2014
+[software classification] November, 2014
 [reproduction condition] limit it to the licensed necessary 
 [use condition] local use of the copyright holder, and is available
 ------------------------- - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -31,7 +31,7 @@ Japanese
 ------------------------ ---------------------------
 【ソ フ ト名】 MogiMeijin
 【バージョン】 1.0
-【著 作 権者】 齊藤裕介、2014年11月
+【著 作 権  】 2014年11月
 【ｿﾌﾄｳｪｱ種別】 フリーウェア
 【転載  条件】 著作権者の許諾必要
 【使用  条件】 局所的利用に限定して利用可能
