@@ -857,17 +857,17 @@ namespace Mogitter {
 
 	private: void mogiMake_Click(System::Object^  sender, System::EventArgs^  e);
 
-			 void _MsgBox(String^title,String^ text);
-			 void MouseMove(int a,int b,int c);
-			 void MouseDown(String^ txt);
-			 void MouseUp(String^ txt);
-			 void MouseClick(String^ txt,int a,int b,int c,int d);
-			 void Send(String^ txt);
+			 //void _MsgBox(String^title,String^ text);
+			 //void MouseMove(int a,int b,int c);
+			 //void MouseDown(String^ txt);
+			 //void MouseUp(String^ txt);
+			 //void MouseClick(String^ txt,int a,int b,int c,int d);
+			 //void Send(String^ txt);
 
 			 void autoitInvoke();
 
-			 void _WinWaitActivate(String^ title,String^ text,int timeout);
-			 void _WinWaitActivate(String^ title,String^ text);
+			 //void _WinWaitActivate(String^ title,String^ text,int timeout);
+			 //void _WinWaitActivate(String^ title,String^ text);
 
 	private: void helpMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 
@@ -905,6 +905,8 @@ namespace Mogitter {
 	private: void over_writeMenuItem_Click(System::Object^  sender, System::EventArgs^  e);
 
 	private: void savingDo(bool append);
+
+			 void setTitle(String^ filename);
 
 	private: void named_saveMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 				 savingDo(false);

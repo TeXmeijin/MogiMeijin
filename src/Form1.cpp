@@ -132,6 +132,7 @@ void Form1::savingDo(bool append){
 	this->Cursor=Windows::Forms::Cursors::Default;
 
 	MyTools::writeTextFile(str,sdg->FileName,mojiCode->Text);
+	setTitle(fileName);
 }
 
 void Form1::azukiArea_CaretMoved(System::Object^  sender, System::EventArgs^  e) {
@@ -326,16 +327,21 @@ void Form1::sampleKeyDown(System::Object^  sender, System::Windows::Forms::KeyEv
 	}
 }
 
-void Form1::open(String^ filename){
-	azukiArea->IsReadOnly = false;
-	azukiArea->ClearHistory();
-	this->Cursor=Windows::Forms::Cursors::AppStarting;
-
+void Form1::setTitle(String^ filename){
 	if (filename!="AutoIt\\japan_Constitution.txt")
 	{
 		fileName = filename;
 		this->Text = "MogiEditor - "+fileName;
 	}
+}
+
+void Form1::open(String^ filename){
+	azukiArea->IsReadOnly = false;
+	azukiArea->ClearHistory();
+	this->Cursor=Windows::Forms::Cursors::AppStarting;
+
+	setTitle(filename);
+
 	String^ str = MyTools::getTextFile(filename,mojiCode->Text);
 	if(!filename->EndsWith(".mogi")){
 		str = str->Replace("{","\"{\"");
@@ -704,27 +710,6 @@ void Form1::torikeshi_doing(String^ sele) {
 		MessageBox::Show("\"{\"‚©‚ç\"}\"‚Ü‚Å‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢B","Œx!!",MessageBoxButtons::OK,MessageBoxIcon::Error);
 }
 
-void Form1::MouseMove(int a,int b,int c)
-{
-	//AutoItX::MouseMove(a,b,c);
-}
-void Form1::MouseDown(String^ txt)
-{
-	//AutoItX::MouseDown(txt);
-}
-void Form1::MouseUp(String^ txt)
-{
-	//AutoItX::MouseUp(txt);
-}
-void Form1::MouseClick(String^ txt,int a,int b,int numClick,int d)
-{
-	//AutoItX::MouseClick(txt,a,b,numClick,d);
-}
-void Form1::Send(String^ txt)
-{
-	//AutoItX::Send(txt,0);
-}
-
 void Form1::autoitInvoke(){
 	doHelp->StartInfo->FileName=MyTools::getApplicationDirectory()+"\\_MogiMeijinŽæˆµà–¾‘.pdf";
 	doHelp->StartInfo->UseShellExecute=true;
@@ -743,22 +728,6 @@ void Form1::helpMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	//{
 	//	th->Abort();
 	//}
-}
-void Form1::_MsgBox(String^title,String^ text){
-	//MessageBox::Show(text,title,MessageBoxButtons::OK, MessageBoxIcon::Information);
-}
-
-void Form1::_WinWaitActivate(String^title,String^text){
-	//_WinWaitActivate(title,text,0);
-}
-
-void Form1::_WinWaitActivate(String^ title,String^ text,int timeout){
-	//AutoItX::WinWait(title,text,timeout);
-	//if (!AutoItX::WinActive(title,text))
-	//{
-	//	AutoItX::WinActivate(title,text);
-	//}
-	//AutoItX::WinWaitActive(title,text,timeout);
 }
 
 void Form1::azukiArea_TextChanged(System::Object^  sender, System::EventArgs^  e) {

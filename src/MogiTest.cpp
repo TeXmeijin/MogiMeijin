@@ -1023,8 +1023,10 @@ void MogiTest::htmlOUTPUT_Click(System::Object^  sender, System::EventArgs^  e) 
 			if (collects[i]->EndsWith("\fdescribe") && answerStrings[i]!=mohan)
 			{
 				writeStrs[i]=" <em class=\"maru\">›</em> <em class=\"describe\">"+answerStrings[i]+" </em>( –Í”Í‰ğ“šF <em class=\"match\">"+mohan+"</em>) ";
-			}else
+			}else{
+				collects[i]=collects[i]->Split('\f')[0];
 				writeStrs[i]=" <em class=\"maru\">›</em> <em class=\"match\">"+collects[i]+"</em></B>";
+			}
 		}
 		if (answers[i]->StartsWith("~"))
 		{
@@ -1036,7 +1038,7 @@ void MogiTest::htmlOUTPUT_Click(System::Object^  sender, System::EventArgs^  e) 
 			{
 				if (collects[i]->EndsWith("\fdescribe"))
 				{
-					String^ mohan=collects[i]->Split('\n')[0];
+					String^ mohan=collects[i]->Split('\f')[0];
 					writeStrs[i]=" <em class=\"batsu\">~</em><em class=\"mistake\">"+answerStrings[i]+"</em> "+" ( –Í”Í‰ğ“šF <em class=\"match\">"+mohan+"</em>)";
 				}else
 					writeStrs[i]=" <em class=\"batsu\">~</em><em class=\"mistake\">"+answerStrings[i]+"</em> "+"  <em class=\"match\">"+collects[i]+"</em>";
@@ -1045,7 +1047,7 @@ void MogiTest::htmlOUTPUT_Click(System::Object^  sender, System::EventArgs^  e) 
 			{
 				if (collects[i]->EndsWith("\fdescribe"))
 				{
-					String^ mohan=collects[i]->Split('\n')[0];
+					String^ mohan=collects[i]->Split('\f')[0];
 					//<em class=\"batsu\">~</em>
 					writeStrs[i]=" <em class=\"batsu\">~</em> "+"–Í”Í‰ğ“šF <em class=\"describe\">"+mohan+"</em>";
 				}else
