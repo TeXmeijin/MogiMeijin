@@ -212,6 +212,7 @@
     <ResourceCompile Include="mogimeijin.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="bugs.txt" />
     <Text Include="help_mt.txt" />
     <Text Include="ReadMe.txt" />
     <Text Include="mamo.txt" />

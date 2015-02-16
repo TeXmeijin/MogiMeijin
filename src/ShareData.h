@@ -14,6 +14,8 @@ namespace Mogitter
 		static String^ timeLimitString="{@TimeLimit=";
 		static String^ semiAndKakko=";}";
 		static String^ defaultEncode="shift-jis";
+		static String^ hintImage="HintImage";
+		static String^ image="Image";
 	}; 
 }
 

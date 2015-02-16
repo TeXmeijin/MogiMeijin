@@ -3,7 +3,7 @@
 !include "MUI2.nsh"
 ;セミコロンからはじまる行はコメント。
 !define NAME "MogiMeijin"
-!define VERSION "1.0"
+!define VERSION "2.0"
 !define PACKAGE "${NAME}${VERSION}"
 !define APPDIR ""
 ;"!define" は定数定義の命令。プログラムの名前やバージョンを設定している。
@@ -51,7 +51,7 @@ Section
   SectionIn RO
 
   SetOutPath $INSTDIR
-  File /r "Release\AutoIt"
+ ; File /r "Release\AutoIt"
   File /r "Release\css"
   File /r "Release\icon"
   File /r "Release\ja"

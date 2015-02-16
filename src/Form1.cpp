@@ -410,15 +410,21 @@ void Form1::remake_doing(String^ sele){
 	if(sele ==nullptr || sele->Length <= 0){
 		return;
 	}
-	if(sele->StartsWith("{Answer") && sele->EndsWith(ShareData::semiAndKakko)){
+	if(sele->StartsWith("{Answer") && sele->EndsWith(ShareData::semiAndKakko))
+	{
 		//array<wchar_t>^ sep = {'\n'};
 		sele = MogiTest::escapeSet(sele);
 		array<String^> ^commands = sele->Split(';');
-		if(commands->Length<3 || sele->IndexOf(ShareData::describeString)>=0){
+		/*ていうか取り消しかやり直しかしっかりしようや。
+		このメソッドはやり直しのメソッドなんやからさ。*/
+		if(commands->Length<3 || sele->IndexOf(ShareData::describeString)>=0)
+		{
+			//単なる穴埋め問題か、記述問題なら取り消し
 			torikeshi_doing(sele);
 			return;
 		}
 		if (sele->IndexOf("Other=")>=0)
+			//別解問題なら
 		{
 			String^ ansStr = commands[0]->Split('=')[1];
 			String^ itemsStr = commands[1]->Split('=')[1];
@@ -428,17 +434,23 @@ void Form1::remake_doing(String^ sele){
 			for each(String^ item in items)
 			{
 				exec->sentakushi->Text += MogiTest::escapeReSet(item) + "\n";
-			}
+			}//.
 			exec->Text = "問題作り直し";
 			exec->betsukaiRB->Checked = true;
 			exec->cc();
+			//ここの穴埋め問題を解除するプロセスは必要ないような気がする
 			bool only = onlyAnaume->Checked;
 			onlyAnaume->Checked = false;
 			QBuild_doing(exec,MogiTest::escapeReSet(sele));
 			onlyAnaume->Checked = only;
-		}else{
+			/*}else if (sele->IndexOf(ShareData::hintImage=")>=0)
+			{
+			image_doing(sele);*/
+		}else if (sele->IndexOf("AnswerNum=")>=0)
+			//選択問題なら
+		{
 			String^ ansStr = commands[0]->Split('=')[1];
-			int ansNum = int::Parse(commands[2]->Split('=')[1]);
+			int ansNum = int::Parse(commands[2]->Split('=')[1]);//
 			String^ headMode = commands[3]->Split('=')[1];
 			String^ itemsStr = commands[1]->Split('=')[1];
 			array<String^>^ items = itemsStr->Split(',');
@@ -464,9 +476,79 @@ void Form1::remake_doing(String^ sele){
 			onlyAnaume->Checked = false;
 			QBuild_doing(exec,MogiTest::escapeReSet(sele));
 			onlyAnaume->Checked = only;
+		}else
+		{
+			QBuild^ exec = gcnew QBuild();
+			String^ ansStr = commands[0]->Split('=')[1];
+			exec->answerBox->Text = MogiTest::escapeReSet(ansStr);
+			//bool only = onlyAnaume->Checked;
+			//onlyAnaume->Checked = false;
+			QBuild_doing(exec,MogiTest::escapeReSet(sele));
+			//onlyAnaume->Checked = only;
 		}
 	}else
 		MessageBox::Show("\"{\"から\"}\"まで選択してください。","警告!!",MessageBoxButtons::OK,MessageBoxIcon::Error);
+}
+
+String^ Form1::image_doing(String^ sele){
+	if (sele->Length<=0)
+	{
+		return "";
+	}
+	OpenFileDialog^ odg = gcnew OpenFileDialog();
+	if (makeImageQuest->Checked && makeHintImage->Checked)
+	{
+		MessageBox::Show("まずヒント画像を選んで、\nその後問題画像を選んでください。","注意！"
+			,MessageBoxButtons::OK,MessageBoxIcon::Information);
+		odg->Title="ヒント画像を選択する";
+	}else
+	{
+		odg->Title="画像を選択する";
+	}
+	odg->Filter = "JPEGファイル(*.jpg)|*.jpg|PNGファイル(*.png)|*.png";
+	if (fileName->Length>0 && MyTools::getParent(fileName)->Length>0)
+	{
+		odg->InitialDirectory=MyTools::getParent(fileName);
+	}
+	if(odg->ShowDialog() != System::Windows::Forms::DialogResult::OK){
+		return "";
+	}
+	String^ path=odg->FileName;
+	FileInfo^ f1=gcnew FileInfo(path);
+	if (fileName->Length>0)
+	{
+		if (MyTools::getParent(fileName)!=MyTools::getParent(path))
+		{
+			f1->CopyTo(MyTools::getParent(fileName)+"\\"+f1->Name,true);
+		}
+	}
+	String^ res="";
+	if (makeHintImage->Checked)
+	{
+		res+=ShareData::hintImage+"="+f1->Name+";";//{Answer="+sele+";
+	}	
+	if (makeImageQuest->Checked)
+	{
+		if (res->Length>0)
+		{
+			odg->Title="問題画像を選択する";
+			if(odg->ShowDialog() != System::Windows::Forms::DialogResult::OK){
+				return res;
+			}
+			String^ path=odg->FileName;
+			f1=gcnew FileInfo(path);
+			if (fileName->Length>0)
+			{
+				if (MyTools::getParent(fileName)!=MyTools::getParent(path))
+				{
+					f1->CopyTo(MyTools::getParent(fileName)+"\\"+f1->Name,true);
+				}
+			}
+		}
+		res+=ShareData::image+"="+f1->Name+";"; 
+	}
+
+	return res;
 }
 
 void Form1::tArea_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
@@ -552,6 +634,11 @@ void Form1::tArea_MouseUp(System::Object^  sender, System::Windows::Forms::Mouse
 }
 String^ Form1::makeDesc(String^ sele){
 	String^ retStr="";
+	if(sele->StartsWith("{Answer") && sele->EndsWith(ShareData::semiAndKakko)){
+		array<String^> ^commands = sele->Split(';');
+		String^ ansStr = commands[0]->Split('=')[1];
+		sele=ansStr;
+	}
 	if (makeDescription->Checked)
 	{
 		retStr = kakkos[0]+ShareData::answerStringMini + MogiTest::escapeReady(sele)+";"+ShareData::describeString+"True;}";
@@ -621,6 +708,11 @@ void Form1::QBuild_doing(QBuild^ exec , String^ sele){
 			}
 		}
 	}
+	if (makeHintImage->Checked || makeImageQuest->Checked)
+	{
+		String^ img=image_doing(sele);
+		retStr=retStr->Replace(";}",";"+img+"}");
+	}
 	azukiArea->Document->Replace(retStr);
 	this->Focus();
 	azukiArea->Focus();
@@ -689,6 +781,11 @@ void Form1::mogiMake_Click(System::Object^  sender, System::EventArgs^  e) {
 		test->ImeMode=Windows::Forms::ImeMode::Hiragana;
 		String^ comTxt = "";
 		comTxt = azukiArea->Text;
+		if (fileName->Length>0)
+		{
+			test->filename=fileName; 
+			over_writeMenuItem_Click(sender,e);
+		}
 		test->Show();
 		test->compile(comTxt);
 		this->Cursor=Windows::Forms::Cursors::Default;

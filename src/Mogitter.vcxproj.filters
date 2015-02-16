@@ -103,6 +103,7 @@
       <Filter>リソース ファイル</Filter>
     </Text>
     <Text Include="mamo.txt" />
+    <Text Include="bugs.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resX">

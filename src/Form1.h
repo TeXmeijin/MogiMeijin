@@ -149,6 +149,12 @@ namespace Mogitter {
 	private: System::Windows::Forms::NumericUpDown^  numericUpDown1;
 	private: System::Windows::Forms::CheckBox^  makeDescription;
 	private: System::Diagnostics::Process^  doHelp;
+private: System::Windows::Forms::CheckBox^  makeHintImage;
+private: System::Windows::Forms::CheckBox^  makeImageQuest;
+
+
+
+
 
 	protected: 
 
@@ -166,7 +172,7 @@ namespace Mogitter {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
-			Sgry::Azuki::FontInfo^  fontInfo1 = (gcnew Sgry::Azuki::FontInfo());
+			Sgry::Azuki::FontInfo^  fontInfo2 = (gcnew Sgry::Azuki::FontInfo());
 			this->openFile = (gcnew System::Windows::Forms::Button());
 			this->mogiMake = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
@@ -196,6 +202,7 @@ namespace Mogitter {
 			this->deleteRB = (gcnew System::Windows::Forms::RadioButton());
 			this->makeOrDeleteBox = (gcnew System::Windows::Forms::GroupBox());
 			this->kindSetBox = (gcnew System::Windows::Forms::GroupBox());
+			this->makeHintImage = (gcnew System::Windows::Forms::CheckBox());
 			this->makeDescription = (gcnew System::Windows::Forms::CheckBox());
 			this->saveButton = (gcnew System::Windows::Forms::Button());
 			this->azukiArea = (gcnew Sgry::Azuki::WinForms::AzukiControl());
@@ -215,6 +222,7 @@ namespace Mogitter {
 			this->uTF8ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->shiftjisToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->doHelp = (gcnew System::Diagnostics::Process());
+			this->makeImageQuest = (gcnew System::Windows::Forms::CheckBox());
 			this->menuStrip1->SuspendLayout();
 			this->makeOrDeleteBox->SuspendLayout();
 			this->kindSetBox->SuspendLayout();
@@ -246,9 +254,9 @@ namespace Mogitter {
 				static_cast<System::Byte>(128)));
 			this->mogiMake->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"mogiMake.Image")));
 			this->mogiMake->ImageAlign = System::Drawing::ContentAlignment::MiddleRight;
-			this->mogiMake->Location = System::Drawing::Point(626, 508);
+			this->mogiMake->Location = System::Drawing::Point(629, 571);
 			this->mogiMake->Name = L"mogiMake";
-			this->mogiMake->Size = System::Drawing::Size(193, 45);
+			this->mogiMake->Size = System::Drawing::Size(192, 45);
 			this->mogiMake->TabIndex = 7;
 			this->mogiMake->Text = L"模擬テスト試行";
 			this->mogiMake->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
@@ -492,24 +500,38 @@ namespace Mogitter {
 				static_cast<System::Byte>(128)));
 			this->makeOrDeleteBox->Location = System::Drawing::Point(627, 85);
 			this->makeOrDeleteBox->Name = L"makeOrDeleteBox";
-			this->makeOrDeleteBox->Size = System::Drawing::Size(192, 99);
+			this->makeOrDeleteBox->Size = System::Drawing::Size(192, 96);
 			this->makeOrDeleteBox->TabIndex = 14;
 			this->makeOrDeleteBox->TabStop = false;
 			this->makeOrDeleteBox->Text = L"作成/削除";
 			// 
 			// kindSetBox
 			// 
+			this->kindSetBox->Controls->Add(this->makeImageQuest);
+			this->kindSetBox->Controls->Add(this->makeHintImage);
 			this->kindSetBox->Controls->Add(this->makeDescription);
 			this->kindSetBox->Controls->Add(this->makeKaitougun);
 			this->kindSetBox->Controls->Add(this->onlyAnaume);
 			this->kindSetBox->Font = (gcnew System::Drawing::Font(L"メイリオ", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(128)));
-			this->kindSetBox->Location = System::Drawing::Point(627, 191);
+			this->kindSetBox->Location = System::Drawing::Point(628, 187);
 			this->kindSetBox->Name = L"kindSetBox";
-			this->kindSetBox->Size = System::Drawing::Size(192, 132);
+			this->kindSetBox->Size = System::Drawing::Size(192, 199);
 			this->kindSetBox->TabIndex = 15;
 			this->kindSetBox->TabStop = false;
 			this->kindSetBox->Text = L"問題の種類指定";
+			// 
+			// makeHintImage
+			// 
+			this->makeHintImage->AutoSize = true;
+			this->makeHintImage->Font = (gcnew System::Drawing::Font(L"メイリオ", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(128)));
+			this->makeHintImage->Location = System::Drawing::Point(12, 130);
+			this->makeHintImage->Name = L"makeHintImage";
+			this->makeHintImage->Size = System::Drawing::Size(149, 27);
+			this->makeHintImage->TabIndex = 15;
+			this->makeHintImage->Text = L"ヒント画像を作成";
+			this->makeHintImage->UseVisualStyleBackColor = true;
 			// 
 			// makeDescription
 			// 
@@ -551,10 +573,10 @@ namespace Mogitter {
 			this->azukiArea->DrawsSpace = true;
 			this->azukiArea->FirstVisibleLine = 0;
 			this->azukiArea->Font = (gcnew System::Drawing::Font(L"メイリオ", 12));
-			fontInfo1->Name = L"メイリオ";
-			fontInfo1->Size = 12;
-			fontInfo1->Style = System::Drawing::FontStyle::Regular;
-			this->azukiArea->FontInfo = fontInfo1;
+			fontInfo2->Name = L"メイリオ";
+			fontInfo2->Size = 12;
+			fontInfo2->Style = System::Drawing::FontStyle::Regular;
+			this->azukiArea->FontInfo = fontInfo2;
 			this->azukiArea->ForeColor = System::Drawing::Color::Black;
 			this->azukiArea->HighlightsCurrentLine = false;
 			this->azukiArea->HighlightsMatchedBracket = false;
@@ -589,7 +611,7 @@ namespace Mogitter {
 			this->keishikiBox->Controls->Add(this->randomCheckBox);
 			this->keishikiBox->Font = (gcnew System::Drawing::Font(L"メイリオ", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(128)));
-			this->keishikiBox->Location = System::Drawing::Point(626, 329);
+			this->keishikiBox->Location = System::Drawing::Point(628, 392);
 			this->keishikiBox->Name = L"keishikiBox";
 			this->keishikiBox->Size = System::Drawing::Size(192, 173);
 			this->keishikiBox->TabIndex = 17;
@@ -792,6 +814,18 @@ namespace Mogitter {
 			this->doHelp->SynchronizingObject = this;
 			this->doHelp->Exited += gcnew System::EventHandler(this, &Form1::doHelp_Exited);
 			// 
+			// makeImageQuest
+			// 
+			this->makeImageQuest->AutoSize = true;
+			this->makeImageQuest->Font = (gcnew System::Drawing::Font(L"メイリオ", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(128)));
+			this->makeImageQuest->Location = System::Drawing::Point(12, 163);
+			this->makeImageQuest->Name = L"makeImageQuest";
+			this->makeImageQuest->Size = System::Drawing::Size(134, 27);
+			this->makeImageQuest->TabIndex = 16;
+			this->makeImageQuest->Text = L"画像問題を作成";
+			this->makeImageQuest->UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
@@ -976,6 +1010,8 @@ namespace Mogitter {
 					 mojiCode->ForeColor = Color::White;
 				 }
 			 }
+
+			 String^ image_doing(String^ sele);
 
 	private: void Form1_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
 				 QMarking::writeToReg(fileName);

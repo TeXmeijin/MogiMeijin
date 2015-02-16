@@ -135,6 +135,8 @@ bool MogiTest::compile(String^ text){
 	int index = 0;
 	questStrings = gcnew List<String^>;
 	answerStrings = gcnew List<String^>;
+	imageFileNames = gcnew List<String^>;
+	imageIndex = gcnew List<int>;
 
 	int husNumInd = 0;
 	int whileCount = 0;
@@ -268,6 +270,28 @@ bool MogiTest::compile(String^ text){
 			}
 			questStrings->Add(retStr);
 			temp = replaceFirst(temp,saveInKakko," ( "+qCount+" ) ");
+			//}else if(inKakko->IndexOf(ShareData::hintImage=")>=0){
+			//	//{Answer=sample;Image=sample.jpg;}
+			//	array<String^>^ options = inKakko->Split(';');
+			//	String^ imageName;
+			//	String^ answer = "";
+			//	String^ retStr = "";
+			//	for(int i=0;i<options->Length;i++){
+			//		array<String^>^ ope = options[i]->Split('=');
+			//		if(ope[0]=="{Answer")
+			//			answer = ope[1];
+			//		if(ope[0]==ShareData::hintImage")
+			//			imageName = ope[1];
+			//	}
+			//	answer = escapeReSet(answer);
+
+			//	kaitouGunList->Add(answer);
+
+			//	answer = escapeReady(answer);
+			//	retStr += "-1,"+answer+","+imageName;
+
+			//	questStrings->Add(retStr);
+			//	temp = replaceFirst(temp,saveInKakko," ( "+qCount+" ) ");
 		}else if(inKakko->IndexOf(ShareData::describeString)>=0){
 			array<String^>^ options = inKakko->Split(';');
 			String^ answer = options[0]->Split('=')[1];
@@ -284,7 +308,7 @@ bool MogiTest::compile(String^ text){
 			//****!!!!
 			//特殊文字の問題。"," ";" "="はエスケープすべき。
 			//ここの-2は;}を取り除くための手抜きアルゴリズム
-			answer = answer->Substring(0,answer->Length-2);
+			answer = answer->Split(';')[0];
 			answer = escapeReSet(answer);
 
 			kaitouGunList->Add(answer);
@@ -292,6 +316,21 @@ bool MogiTest::compile(String^ text){
 			questStrings->Add(listAddStr);
 
 			temp = replaceFirst(temp,saveInKakko," ( "+qCount+" ) ");
+		}
+		if(inKakko->IndexOf(ShareData::hintImage+"=")>=0 || inKakko->IndexOf(ShareData::image+"=")>=0){
+			//{Answer=sample;Image=sample.jpg;}
+			array<String^>^ options = inKakko->Split(';');
+			String^ imageName = "";
+			String^ retStr = "";
+			for(int i=0;i<options->Length;i++){
+				array<String^>^ ope = options[i]->Split('=');
+				if(ope[0]==ShareData::hintImage)
+					imageName += ope[1];
+				if(ope[0]==ShareData::image)
+					imageName += ";"+ope[1];
+			}
+			imageIndex->Add(qCount);
+			imageFileNames->Add(imageName);
 		}
 	}
 	if (qCount==0)
@@ -725,7 +764,7 @@ System::Void MogiTest::sentakushiCombo_SelectedIndexChanged(System::Object^  sen
 		String^ ansMe = (String^)(sentakushiCombo->SelectedItem);
 		if(ansMe == ShareData::noneString)
 		{
-			
+
 		}else
 			//userAnswerArea->Text = "";
 			try{
@@ -743,13 +782,13 @@ void MogiTest::qnumDoing(){
 		sentakuGroup->Enabled = false;
 		bunsyouBox->Enabled = false;
 	}else{
-		kakkohigh->ClearEnclosures();
-		array<String^>^ currentQuestion = {"( "+seleNum};
-		kakkohigh->AddEnclosure("( "+seleNum+" ",")",Sgry::Azuki::CharClass::Function,false);
-		int index = QuestSentence->Text->IndexOf(currentQuestion[0]);
-		int len = currentQuestion[0]->Length;
-		QuestSentence->Document->Replace(currentQuestion[0],index,index+len);
-		QuestSentence->Highlighter->Highlight(QuestSentence->Document);
+		answerImageSplitter->Panel2Collapsed=true;
+		splitContainer1->SplitterDistance = 432;
+		questImageSplitter->Panel2Collapsed=true;
+		questImageSplitter->Panel1Collapsed=false;
+
+		QuestSentence->ColorScheme->SetColor(Sgry::Azuki::CharClass::Function,
+			userAnswerArea->ColorScheme->SelectionFore,userAnswerArea->ColorScheme->SelectionBack);
 
 		String^ seleCombo = escapeSet(questStrings[seleNum-1]);
 		array<String^>^ splStrs = seleCombo->Split(',');
@@ -760,7 +799,11 @@ void MogiTest::qnumDoing(){
 
 		//書式："1,(answer)"
 		//書式："4,(ansNum),aaa:bbb:ccc:ddd"
-		if(int::Parse(splStrs[0])>1){
+		int kind=int::Parse(splStrs[0]);
+		if(kind>1){
+			//QuestSentence->ColorScheme->SetColor(Sgry::Azuki::CharClass::Function,
+			//	userAnswerArea->ColorScheme->SelectionFore,Color::Yellow);
+
 			anaumeGroup->Enabled = false;
 			sentakuGroup->Enabled = true;
 			bunsyouBox->Enabled = false;
@@ -838,6 +881,63 @@ void MogiTest::qnumDoing(){
 				}
 			}
 		}
+		for (int i = 0; i < imageIndex->Count; i++)
+		{
+			if (imageIndex[i]==seleNum)
+			{
+				try{
+					bool hint=true;
+					String^ fn=imageFileNames[i];
+					array<String^>^ files=fn->Split(';');
+					if (files[0]->Length>0)
+					{
+						answerImageSplitter->Panel2Collapsed=false;
+						ImageQuest->Image=Image::FromFile(MyTools::getParent(filename)+"\\"+files[0]);
+						int width=ImageQuest->Image->Width;
+						int height=ImageQuest->Image->Height;
+						double aspect=height/(width*1.0);
+						if (aspect>1)
+						{
+							height=380;
+							width=(int)(height/aspect);
+						}else
+						{
+							width=380;
+							height=(int)(width*aspect);
+						}
+						if (files->Length>1 && files[1]->Length>0)
+						{
+							questImageSplitter->Panel2Collapsed=false;
+							questImageSplitter->SplitterDistance=30;
+							//questImageSplitter->Panel1Collapsed=true;
+						}
+						splitContainer1->SplitterDistance=(splitContainer1->Height)-height;
+						answerImageSplitter->SplitterDistance=answerImageSplitter->Width-width;
+					}
+					if (files->Length>1 && files[1]->Length>0)
+					{
+						//imageViewer->Image=Image::FromFile(MyTools::getParent(filename)+"\\"+files[1]);
+						questImageSplitter->Panel2Collapsed=false;
+						questImageSplitter->SplitterDistance=30;
+						//questImageSplitter->Panel1Collapsed=true;
+						imageViewer->Image=Image::FromFile(MyTools::getParent(filename)+"\\"+files[1]);
+					}else
+					{
+						QuestSentence->ColorScheme->SetColor(Sgry::Azuki::CharClass::Function,
+							userAnswerArea->ColorScheme->SelectionFore,Color::LightSkyBlue);
+					}
+				}catch(Exception^){
+					MessageBox::Show("指定の画像ファイルは見つかりませんでした。","警告",MessageBoxButtons::OK,MessageBoxIcon::Information);
+				}
+			}
+		}
+		kakkohigh->ClearEnclosures();
+		array<String^>^ currentQuestion = {"( "+seleNum};
+		kakkohigh->AddEnclosure("( "+seleNum+" ",")",Sgry::Azuki::CharClass::Function,false);
+		int index = QuestSentence->Text->IndexOf(currentQuestion[0]);
+		int len = currentQuestion[0]->Length;
+		QuestSentence->Document->Replace(currentQuestion[0],index,index+len);
+		QuestSentence->Highlighter->Highlight(QuestSentence->Document);
 	}
 }
 
@@ -918,6 +1018,7 @@ void MogiTest::timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 	if(countUp >= qCountField){
 		timer1->Stop();
 		panel1->Enabled=true;
+		time_limit->Text = "採点が終了しました。";
 
 		QMarking^ qm = gcnew QMarking();
 		qm->Owner = this;

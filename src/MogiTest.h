@@ -96,6 +96,8 @@ namespace Mogitter {
 		   List<String^>^ answerStrings;
 		   List<String^>^ kaitouGunList;
 		   List<int>^ seikaiNumber;
+		   List<int>^ imageIndex;
+		   List<String^>^ imageFileNames;
 
 		   String^ filename;
 
@@ -161,8 +163,10 @@ namespace Mogitter {
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::PictureBox^  ImageQuest;
 private: System::Windows::Forms::RichTextBox^  bunsyoudai;
-private: System::Windows::Forms::SplitContainer^  splitContainer2;
-private: System::Windows::Forms::PictureBox^  pictureBox1;
+private: System::Windows::Forms::SplitContainer^  questImageSplitter;
+
+private: System::Windows::Forms::PictureBox^  imageViewer;
+
 
 
 
@@ -216,7 +220,9 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->keikajikan = (gcnew System::Windows::Forms::Timer(this->components));
 			this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
+			this->questImageSplitter = (gcnew System::Windows::Forms::SplitContainer());
 			this->QuestSentence = (gcnew Sgry::Azuki::WinForms::AzukiControl());
+			this->imageViewer = (gcnew System::Windows::Forms::PictureBox());
 			this->answerImageSplitter = (gcnew System::Windows::Forms::SplitContainer());
 			this->userAnswerArea = (gcnew Sgry::Azuki::WinForms::AzukiControl());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -229,8 +235,6 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->bunsyouBox = (gcnew System::Windows::Forms::GroupBox());
 			this->bunsyoudai = (gcnew System::Windows::Forms::RichTextBox());
 			this->openHTML = (gcnew System::Diagnostics::Process());
-			this->splitContainer2 = (gcnew System::Windows::Forms::SplitContainer());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->anaumeGroup->SuspendLayout();
 			this->sentakuGroup->SuspendLayout();
 			this->menuStrip1->SuspendLayout();
@@ -239,6 +243,11 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->splitContainer1->Panel1->SuspendLayout();
 			this->splitContainer1->Panel2->SuspendLayout();
 			this->splitContainer1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->questImageSplitter))->BeginInit();
+			this->questImageSplitter->Panel1->SuspendLayout();
+			this->questImageSplitter->Panel2->SuspendLayout();
+			this->questImageSplitter->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->imageViewer))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->answerImageSplitter))->BeginInit();
 			this->answerImageSplitter->Panel1->SuspendLayout();
 			this->answerImageSplitter->Panel2->SuspendLayout();
@@ -246,11 +255,6 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ImageQuest))->BeginInit();
 			this->panel1->SuspendLayout();
 			this->bunsyouBox->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->splitContainer2))->BeginInit();
-			this->splitContainer2->Panel1->SuspendLayout();
-			this->splitContainer2->Panel2->SuspendLayout();
-			this->splitContainer2->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// time_limit
@@ -479,17 +483,38 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			// splitContainer1.Panel1
 			// 
 			this->splitContainer1->Panel1->BackColor = System::Drawing::SystemColors::Control;
-			this->splitContainer1->Panel1->Controls->Add(this->splitContainer2);
 			this->splitContainer1->Panel1->Controls->Add(this->time_limit);
+			this->splitContainer1->Panel1->Controls->Add(this->questImageSplitter);
 			// 
 			// splitContainer1.Panel2
 			// 
 			this->splitContainer1->Panel2->Controls->Add(this->answerImageSplitter);
 			this->splitContainer1->Size = System::Drawing::Size(687, 633);
-			this->splitContainer1->SplitterDistance = 432;
+			this->splitContainer1->SplitterDistance = 535;
 			this->splitContainer1->SplitterWidth = 3;
 			this->splitContainer1->TabIndex = 12;
 			this->splitContainer1->TabStop = false;
+			// 
+			// questImageSplitter
+			// 
+			this->questImageSplitter->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->questImageSplitter->Location = System::Drawing::Point(0, 0);
+			this->questImageSplitter->Name = L"questImageSplitter";
+			this->questImageSplitter->Orientation = System::Windows::Forms::Orientation::Horizontal;
+			// 
+			// questImageSplitter.Panel1
+			// 
+			this->questImageSplitter->Panel1->Controls->Add(this->QuestSentence);
+			this->questImageSplitter->Panel1MinSize = 0;
+			// 
+			// questImageSplitter.Panel2
+			// 
+			this->questImageSplitter->Panel2->Controls->Add(this->imageViewer);
+			this->questImageSplitter->Panel2Collapsed = true;
+			this->questImageSplitter->Panel2MinSize = 0;
+			this->questImageSplitter->Size = System::Drawing::Size(687, 535);
+			this->questImageSplitter->SplitterDistance = 318;
+			this->questImageSplitter->TabIndex = 1;
 			// 
 			// QuestSentence
 			// 
@@ -512,17 +537,28 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->QuestSentence->HighlightsCurrentLine = false;
 			this->QuestSentence->HighlightsMatchedBracket = false;
 			this->QuestSentence->IsReadOnly = true;
-			this->QuestSentence->Location = System::Drawing::Point(0, 0);
+			this->QuestSentence->Location = System::Drawing::Point(0, 30);
 			this->QuestSentence->Name = L"QuestSentence";
 			this->QuestSentence->ScrollPos = System::Drawing::Point(0, 0);
 			this->QuestSentence->ShowsDirtBar = false;
 			this->QuestSentence->ShowsHScrollBar = false;
-			this->QuestSentence->Size = System::Drawing::Size(684, 396);
+			this->QuestSentence->Size = System::Drawing::Size(687, 502);
 			this->QuestSentence->TabIndex = 1;
 			this->QuestSentence->TabStop = false;
 			this->QuestSentence->ViewType = Sgry::Azuki::ViewType::WrappedProportional;
 			this->QuestSentence->ViewWidth = 561;
 			this->QuestSentence->SizeChanged += gcnew System::EventHandler(this, &MogiTest::QuestSentence_SizeChanged);
+			// 
+			// imageViewer
+			// 
+			this->imageViewer->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->imageViewer->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->imageViewer->Location = System::Drawing::Point(0, 0);
+			this->imageViewer->Name = L"imageViewer";
+			this->imageViewer->Size = System::Drawing::Size(687, 213);
+			this->imageViewer->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+			this->imageViewer->TabIndex = 0;
+			this->imageViewer->TabStop = false;
 			// 
 			// answerImageSplitter
 			// 
@@ -542,8 +578,8 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->answerImageSplitter->Panel2->Controls->Add(this->ImageQuest);
 			this->answerImageSplitter->Panel2Collapsed = true;
 			this->answerImageSplitter->Panel2MinSize = 0;
-			this->answerImageSplitter->Size = System::Drawing::Size(687, 198);
-			this->answerImageSplitter->SplitterDistance = 662;
+			this->answerImageSplitter->Size = System::Drawing::Size(687, 95);
+			this->answerImageSplitter->SplitterDistance = 657;
 			this->answerImageSplitter->SplitterWidth = 2;
 			this->answerImageSplitter->TabIndex = 12;
 			// 
@@ -576,7 +612,7 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->userAnswerArea->ScrollPos = System::Drawing::Point(0, 0);
 			this->userAnswerArea->ScrollsBeyondLastLine = false;
 			this->userAnswerArea->ShowsDirtBar = false;
-			this->userAnswerArea->Size = System::Drawing::Size(684, 167);
+			this->userAnswerArea->Size = System::Drawing::Size(688, 64);
 			this->userAnswerArea->TabIndex = 13;
 			this->userAnswerArea->TabStop = false;
 			this->userAnswerArea->TabWidth = 9;
@@ -597,10 +633,11 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			// 
 			// ImageQuest
 			// 
+			this->ImageQuest->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->ImageQuest->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->ImageQuest->Location = System::Drawing::Point(0, 0);
 			this->ImageQuest->Name = L"ImageQuest";
-			this->ImageQuest->Size = System::Drawing::Size(96, 100);
+			this->ImageQuest->Size = System::Drawing::Size(28, 198);
 			this->ImageQuest->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->ImageQuest->TabIndex = 0;
 			this->ImageQuest->TabStop = false;
@@ -710,38 +747,6 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->openHTML->StartInfo->UserName = L"";
 			this->openHTML->SynchronizingObject = this;
 			// 
-			// splitContainer2
-			// 
-			this->splitContainer2->Location = System::Drawing::Point(0, 30);
-			this->splitContainer2->Name = L"splitContainer2";
-			this->splitContainer2->Orientation = System::Windows::Forms::Orientation::Horizontal;
-			// 
-			// splitContainer2.Panel1
-			// 
-			this->splitContainer2->Panel1->Controls->Add(this->QuestSentence);
-			this->splitContainer2->Panel1MinSize = 0;
-			// 
-			// splitContainer2.Panel2
-			// 
-			this->splitContainer2->Panel2->Controls->Add(this->pictureBox1);
-			this->splitContainer2->Panel2Collapsed = true;
-			this->splitContainer2->Panel2MinSize = 0;
-			this->splitContainer2->Size = System::Drawing::Size(684, 399);
-			this->splitContainer2->SplitterDistance = 332;
-			this->splitContainer2->TabIndex = 1;
-			// 
-			// pictureBox1
-			// 
-			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom) 
-				| System::Windows::Forms::AnchorStyles::Left) 
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->pictureBox1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->pictureBox1->Location = System::Drawing::Point(0, -1);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(684, 64);
-			this->pictureBox1->TabIndex = 0;
-			this->pictureBox1->TabStop = false;
-			// 
 			// MogiTest
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
@@ -770,6 +775,11 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->splitContainer1->Panel2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->splitContainer1))->EndInit();
 			this->splitContainer1->ResumeLayout(false);
+			this->questImageSplitter->Panel1->ResumeLayout(false);
+			this->questImageSplitter->Panel2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->questImageSplitter))->EndInit();
+			this->questImageSplitter->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->imageViewer))->EndInit();
 			this->answerImageSplitter->Panel1->ResumeLayout(false);
 			this->answerImageSplitter->Panel1->PerformLayout();
 			this->answerImageSplitter->Panel2->ResumeLayout(false);
@@ -779,11 +789,6 @@ private: System::Windows::Forms::PictureBox^  pictureBox1;
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			this->bunsyouBox->ResumeLayout(false);
-			this->splitContainer2->Panel1->ResumeLayout(false);
-			this->splitContainer2->Panel2->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->splitContainer2))->EndInit();
-			this->splitContainer2->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
