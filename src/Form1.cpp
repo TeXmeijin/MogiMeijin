@@ -145,54 +145,59 @@ void Form1::azukiArea_CaretMoved(System::Object^  sender, System::EventArgs^  e)
 		int now = azukiArea->CaretIndex;
 		int top = azukiArea->Document->GetLineHeadIndexFromCharIndex(now);
 		int end = azukiArea->Document->GetLineEndIndexFromCharIndex(now);
-		for (int i = now-1; i >= top; i--)
+		if (azukiArea->Text->StartsWith(ShareData::randomString) && 
+			azukiArea->Document->GetLineIndexFromCharIndex(now)==0)
 		{
-			if (azukiArea->Document->GetCharAt(i) == '}')
+			azukiArea->Document->SetCaretIndex(0,end);
+		}else
+			for (int i = now-1; i >= top; i--)
 			{
-				if (i>0 && azukiArea->Document->GetCharAt(i-1) == '\"')
+				if (azukiArea->Document->GetCharAt(i) == '}')
 				{
-
-				}else
-				{
-					break;
-				}
-			}
-			if (azukiArea->Document->GetCharAt(i) == '{')
-			{
-				if (i>0 && azukiArea->Document->GetCharAt(i-1) == '\"')
-				{
-
-				}else
-				{
-					int beg = 0;
-					int col = 0;
-					azukiArea->Document->GetCaretIndex(beg,col);
-					int endKakkoIndex = end;
-					for (int j = i; j < end; j++)
+					if (i>0 && azukiArea->Document->GetCharAt(i-1) == '\"')
 					{
-						if (azukiArea->Document->GetCharAt(j) == '}')
-						{
-							if (j>0 && azukiArea->Document->GetCharAt(j-1) == '\"')
-							{
 
-							}else
-							{
-								endKakkoIndex = j;
-								break;
-							}
-						}
-					}
-					if ((endKakkoIndex - top - col) < (top + col - i))
-					{
-						azukiArea->Document->SetCaretIndex(beg,endKakkoIndex - top +1);
 					}else
 					{
-						azukiArea->Document->SetCaretIndex(beg,i-top);
+						break;
 					}
-					break;
+				}
+				if (azukiArea->Document->GetCharAt(i) == '{')
+				{
+					if (i>0 && azukiArea->Document->GetCharAt(i-1) == '\"')
+					{
+
+					}else
+					{
+						int beg = 0;
+						int col = 0;
+						azukiArea->Document->GetCaretIndex(beg,col);
+						int endKakkoIndex = end;
+						for (int j = i; j < end; j++)
+						{
+							if (azukiArea->Document->GetCharAt(j) == '}')
+							{
+								if (j>0 && azukiArea->Document->GetCharAt(j-1) == '\"')
+								{
+
+								}else
+								{
+									endKakkoIndex = j;
+									break;
+								}
+							}
+						}
+						if ((endKakkoIndex - top - col) < (top + col - i))
+						{
+							azukiArea->Document->SetCaretIndex(beg,endKakkoIndex - top +1);
+						}else
+						{
+							azukiArea->Document->SetCaretIndex(beg,i-top);
+						}
+						break;
+					}
 				}
 			}
-		}
 	}
 }
 

@@ -4,13 +4,16 @@
 using namespace Mogitter;
 using namespace System::Windows::Forms;
 
+//mogiファイルを開いたときに模擬テストとして出力する関数
 bool MogiTest::compile(String^ text, bool isPass){
 	if (isPass)
 	{
 		try{
+			//ファイルから指定の文字コードで文字列を読み込む
 			String^ str = MyTools::getTextFile(text,ShareData::defaultEncode);
 			filename=text;
 			this->Text="MogiTester - "+filename;
+			//変換の結果を真理値で返す
 			return compile(str);
 		}catch(Exception^){
 			return false;
@@ -20,20 +23,24 @@ bool MogiTest::compile(String^ text, bool isPass){
 	}
 	return true;
 }
+//「模擬テストを試行」押下時に一般的に実行される関数
 bool MogiTest::compile(String^ text){
 
+	// 初期設定
 	this->Cursor=Windows::Forms::Cursors::AppStarting;
 	this->Focus();
 	keikajikan->Stop();
 
+	// 見た目の設定
 	splitContainer1->SplitterDistance=451;
 	this->userAnswerArea->ViewType = Sgry::Azuki::ViewType::Proportional;//!!!
 	setEnableSaiten(true);
 
-	String^ temp = "";
+	String^ temp = ""; //一時変数の初期化
 	bool kaitougun = false;
 	userAnswerArea->Font = (gcnew System::Drawing::Font(userAnswerArea->Font->FontFamily, userAnswerArea->Font->Size, FontStyle::Regular, System::Drawing::GraphicsUnit::Point,static_cast<System::Byte>(128)));
-	if (text->StartsWith(ShareData::randomString))
+	
+	if (text->StartsWith(ShareData::randomString))//ランダムに行を並び替えることが出来るとき
 	{
 		Random^ rand = gcnew Random();
 		array<String^> ^bufbef = text->Split('\n');

@@ -13,7 +13,7 @@ OutFile "${PACKAGE}Setup.exe"
 InstallDir "$PROGRAMFILES\${NAME}\${PACKAGE}"
 ;InstallDirRegKey HKLM "SOFTWARE\${PACKAGE}" ""
 ;インストールディレクトリとレジストリキーの設定。
-RequestExecutionLevel user
+RequestExecutionLevel admin
 ;実行権限の指定。"admin" だと管理者しか実行できない。"user" ならば制限ユーザーでも実行できる。
 !define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\MeiIcon4.ico"
  
@@ -28,7 +28,7 @@ RequestExecutionLevel user
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
-    !define MUI_FINISHPAGE_RUN_TEXT "せっかくやし、ついでに${PACKAGE}を起動する"
+    !define MUI_FINISHPAGE_RUN_TEXT "${PACKAGE}を起動する"
     !define MUI_FINISHPAGE_RUN "$INSTDIR\${NAME}.exe"
 !insertmacro MUI_PAGE_FINISH
 ;インストールのページ設定。順番に、ようこそページ、インストール先フォルダ指定ページ、インストール中ページ、完了ページ。
